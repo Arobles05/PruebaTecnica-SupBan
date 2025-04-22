@@ -6,18 +6,30 @@ using System.Threading.Tasks;
 
 namespace Prueba.Tecnica.Web.Application.ResponseModels
 {
-    public class ApiResponse<T>
+  public class ApiResponse<T>
     {
         public bool Success { get; set; }
-        public string Message { get; set; }
-        public T Data { get; set; }
-        public List<string> Errors { get; set; }
-        public ApiResponse()
+        public required T? Data { get; set; }
+        public required string? ErrorMessage { get; set; }
+
+        public static ApiResponse<T> CreateSuccessResponse(T data)
         {
-            Success = true;
-            Message = string.Empty;
-            Data = default(T);
-            Errors = new List<string>();
+            return new ApiResponse<T>
+            {
+                Success = true,
+                Data = data,
+                ErrorMessage = null
+            };
+        }
+
+        public static ApiResponse<T> CreateErrorResponse(string errorMessage)
+        {
+            return new ApiResponse<T>
+            {
+                Success = false,
+                Data = default,
+                ErrorMessage = errorMessage
+            };
         }
     }
 }
