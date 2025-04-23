@@ -12,6 +12,9 @@ using Prueba.Tecnica.Web.Application.Validatos;
 
 namespace Prueba.Tecnica.Web.API.Controllers
 {
+    /// <summary>
+    /// Controlador para la subida y descarga de archivos
+    /// </summary>
     [Authorize]
     [ApiController]
     [Route("api/files")]
@@ -20,13 +23,29 @@ namespace Prueba.Tecnica.Web.API.Controllers
         private readonly IMediator _mediator;
 
         private readonly ILogger<FilesController> _logger;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="mediator"></param>
         public FilesController(ILogger<FilesController> logger, IMediator mediator)
         {
             _mediator = mediator;
             _logger = logger;
         }
 
+
+        /// <summary>
+        ///  Endpoint para subir un archivo
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        /// <response code="200">Cuando ha procesado la informacion de forma sastifactoria</response>
+        /// <response code="400">Si ha occurrido algun error.</response>
         [HttpPost("upload")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Upload(IFormFile file)
         {
             _logger.LogInformation($"Subiendo Archivo: {file.FileName}");
@@ -49,7 +68,16 @@ namespace Prueba.Tecnica.Web.API.Controllers
             return Ok(new { FileId = fileId });
         }
 
+        /// <summary>
+        ///  Endpoint para obtener el Archivo mediante el Guid
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        /// <response code="200">Cuando ha procesado la informacion de forma sastifactoria</response>
+        /// <response code="400">Si ha occurrido algun error.</response>
         [HttpGet("{fileId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Download(Guid fileId)
         {
             _logger.LogInformation("Descargando Archivo");

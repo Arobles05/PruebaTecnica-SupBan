@@ -2,6 +2,7 @@ using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Prueba.Tecnica.Web.API.Middlewares.Behaviors;
@@ -9,6 +10,7 @@ using Prueba.Tecnica.Web.API.Middlewares.ErrosHandling;
 using Prueba.Tecnica.Web.Application;
 using Prueba.Tecnica.Web.Application.Validatos;
 using Prueba.Tecnica.Web.Persistence;
+using System.Reflection;
 using System.Text;
 
 
@@ -39,19 +41,16 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// Add services to the container.
-// Add services to the container.
 builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddSingleton(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-//builder.Services.AddControllers();
 
 builder.Services.AddControllers()
     .AddFluentValidation(static fv => fv.RegisterValidatorsFromAssemblyContaining<SaveFileCommandValidator>());
 
 builder.Services.Configure<FormOptions>(options =>
 {
-    options.MultipartBodyLengthLimit = 10 * 1024 * 1024; // 5MB  
+    options.MultipartBodyLengthLimit = 10 * 1024 * 1024; // 10MB  
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -81,6 +80,11 @@ builder.Services.AddSwaggerGen(c =>
             Array.Empty<string>()
         }
     });
+
+    // Include XML comments if available  
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
 });
 
 
