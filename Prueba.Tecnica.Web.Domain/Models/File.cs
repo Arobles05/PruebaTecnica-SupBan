@@ -13,5 +13,6 @@ namespace Prueba.Tecnica.Web.Domain.Models
         public string ContentType { get; set; } = null!;
         public string FilePath { get; set; } = null!;
         public Guid CodeFile { get; set; }
+        public byte[] Content { get; set; }
     }
 }

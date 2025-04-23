@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Prueba.Tecnica.Web.Application.Interfaces;
 using Prueba.Tecnica.Web.Infraestructure.Implemantations;
-using Prueba.Tecnica.Web.Infraestructure.Interfaces;
+using Prueba.Tecnica.Web.Application.Interfaces;
 using Prueba.Tecnica.Web.Persistence.Implementatios;
 using System;
 using System.Collections.Generic;

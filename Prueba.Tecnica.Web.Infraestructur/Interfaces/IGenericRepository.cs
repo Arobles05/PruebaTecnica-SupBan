@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Prueba.Tecnica.Web.Infraestructure.Interfaces
 {
-    public interface IGenericRepository<T> where T : class
-    {
-        Task AddAsync(T entity);
-        Task<T?> GetByIdAsync(Guid id);
-        Task SaveChangesAsync();
-    }
+    //public interface IGenericRepository<T> where T : class
+    //{
+    //    Task AddAsync(T entity);
+    //    Task<T?> GetByIdAsync(Guid id);
+    //    Task SaveChangesAsync();
+    //}
 }

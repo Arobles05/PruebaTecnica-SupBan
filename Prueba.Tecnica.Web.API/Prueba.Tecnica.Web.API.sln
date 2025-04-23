@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prueba.Tecnica.Web.Domain",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prueba.Tecnica.Web.Test", "..\Prueba.Tecnica.Web.Test\Prueba.Tecnica.Web.Test.csproj", "{875C95DF-ADB9-4480-BFDF-311A01C934C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prueba.Tecnica.Web.Infraestructure", "..\Prueba.Tecnica.Web.Infraestructur\Prueba.Tecnica.Web.Infraestructure.csproj", "{C7773453-6EA6-4ECE-9CC3-F0DAEC8E0996}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prueba.Tecnica.Web.Persistence", "..\Prueba.Tecnica.Web.Persistence\Prueba.Tecnica.Web.Persistence.csproj", "{F809CA8E-A61E-4925-8D08-65CA3D688DAB}"
 EndProject
 Global
@@ -37,10 +35,6 @@ Global
 		{875C95DF-ADB9-4480-BFDF-311A01C934C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{875C95DF-ADB9-4480-BFDF-311A01C934C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{875C95DF-ADB9-4480-BFDF-311A01C934C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7773453-6EA6-4ECE-9CC3-F0DAEC8E0996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7773453-6EA6-4ECE-9CC3-F0DAEC8E0996}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7773453-6EA6-4ECE-9CC3-F0DAEC8E0996}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7773453-6EA6-4ECE-9CC3-F0DAEC8E0996}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F809CA8E-A61E-4925-8D08-65CA3D688DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F809CA8E-A61E-4925-8D08-65CA3D688DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F809CA8E-A61E-4925-8D08-65CA3D688DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU

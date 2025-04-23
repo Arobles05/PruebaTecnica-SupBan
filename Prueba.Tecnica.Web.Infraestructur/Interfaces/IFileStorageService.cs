@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Prueba.Tecnica.Web.Infraestructure.Interfaces
 {
-    public interface IFileStorageService
-    {
-        Task<Guid> SaveFileAsync(string fileName, string contentType, byte[] content);
-        Task<(string FileName, string ContentType, byte[] Content)?> GetFileAsync(Guid fileId);
-    }
+    //public interface IFileStorageService
+    //{
+    //    Task<Guid> SaveFileAsync(string fileName, string contentType, byte[] content);
+    //    Task<(string FileName, string ContentType, byte[] Content)?> GetFileAsync(Guid fileId);
+    //}
 }

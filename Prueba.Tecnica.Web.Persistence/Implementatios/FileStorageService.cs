@@ -1,5 +1,8 @@
-﻿using Prueba.Tecnica.Web.Domain.Models;
-using Prueba.Tecnica.Web.Infraestructure.Interfaces;
+﻿using Azure.Core;
+using MediatR;
+using Prueba.Tecnica.Web.Application.Dtos;
+using Prueba.Tecnica.Web.Domain.Models;
+using Prueba.Tecnica.Web.Application.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +36,8 @@ namespace Prueba.Tecnica.Web.Infraestructure.Implemantations
                 Id = id,
                 FileName = fileName,
                 ContentType = contentType,
-                FilePath = filePath
+                FilePath = filePath,
+                Content = content,
             };
 
             await _fileRepository.AddAsync(fileEntity);
@@ -42,14 +46,22 @@ namespace Prueba.Tecnica.Web.Infraestructure.Implemantations
             return id;
         }
 
-        public async Task<FileEntity?> GetFileAsync(Guid fileId)
+        public async Task<FileDto?> GetFileAsync(Guid fileId)
         {
-            return await _fileRepository.GetByIdAsync(fileId);
+
+            var fileEntity = await _fileRepository.GetByIdAsync(fileId);
+            if (fileEntity == null)
+                return null!;
+
+            return new FileDto
+            {
+                FileName = fileEntity.FileName,
+                ContentType = fileEntity.ContentType,
+                Content = fileEntity.Content
+            };
+
         }
 
-        Task<(string FileName, string ContentType, byte[] Content)?> IFileStorageService.GetFileAsync(Guid fileId)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

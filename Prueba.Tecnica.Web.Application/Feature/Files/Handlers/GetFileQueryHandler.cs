@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Prueba.Tecnica.Web.Application.Dtos;
 using Prueba.Tecnica.Web.Application.Feature.Files.Queries;
-using Prueba.Tecnica.Web.Infraestructure.Interfaces;
+using Prueba.Tecnica.Web.Application.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +21,7 @@ namespace Prueba.Tecnica.Web.Application.Feature.Files.Handlers
 
         public async Task<FileDto> Handle(GetFileQuery request, CancellationToken cancellationToken)
         {
-            var file = await _storageService.GetFileAsync(request.FileId);
-            if (file == null)
-                return null!; // o lanza excepción según convenga  
-
-            return new FileDto
-            {
-                FileName = null,  //file.FileName,
-                ContentType = null, //file.ContentType,
-                Content = null //file.Content
-            };
+            return await _storageService.GetFileAsync(request.FileId);
         }
     }
 }

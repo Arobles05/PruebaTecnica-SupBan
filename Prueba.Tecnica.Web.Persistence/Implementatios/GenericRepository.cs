@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Prueba.Tecnica.Web.Application.Interfaces;
-using Prueba.Tecnica.Web.Infraestructure.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

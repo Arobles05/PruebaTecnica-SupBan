@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Prueba.Tecnica.Web.Domain\Prueba.Tecnica.Web.Domain.csproj" />
-    <ProjectReference Include="..\Prueba.Tecnica.Web.Infraestructur\Prueba.Tecnica.Web.Infraestructure.csproj" />
   </ItemGroup>
 
 </Project>
