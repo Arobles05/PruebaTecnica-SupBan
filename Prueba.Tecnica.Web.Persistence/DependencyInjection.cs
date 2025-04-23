@@ -23,6 +23,7 @@ namespace Prueba.Tecnica.Web.Persistence
                     b => b.MigrationsAssembly("Prueba.Tecnica.Web.API")));
             services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>());
             services.AddScoped<IFileStorageService, FileStorageService>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
     }
 }

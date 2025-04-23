@@ -16,6 +16,16 @@ namespace Prueba.Tecnica.Web.Persistence.Implementatios
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<FileEntity>().HasKey(f => f.Id);
+            base.OnModelCreating(modelBuilder);
+        }
+        public DbSet<TEntity> Set<TEntity>() where TEntity : class
+        {
+            return base.Set<TEntity>();
+        }
+
         public DbSet<FileEntity> FileEntities { get; set; }
 
         public async Task<int> SaveChangesAsync()

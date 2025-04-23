@@ -10,7 +10,7 @@ namespace Prueba.Tecnica.Web.Application.Interfaces
 {
     public interface IAppDbContext
     {
-            DbSet<FileEntity> FileEntities { get; set; }
+            DbSet<T> Set<T>() where T : class;  
             Task<int> SaveChangesAsync();
     }
 }

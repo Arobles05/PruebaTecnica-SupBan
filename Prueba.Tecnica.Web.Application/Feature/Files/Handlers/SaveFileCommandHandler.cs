@@ -23,7 +23,7 @@ namespace Prueba.Tecnica.Web.Application.Feature.Files.Handlers
         {
             using var memoryStream = new MemoryStream();
             await request.File.CopyToAsync(memoryStream);
-
+            
             var fileId = await _storageService.SaveFileAsync(request.File.FileName, request.File.ContentType, memoryStream.ToArray());
             return fileId;
         }
