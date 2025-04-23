@@ -22,6 +22,7 @@ namespace Prueba.Tecnica.Web.Application.ResponseModels
             };
         }
 
+
         public static ApiResponse<T> CreateErrorResponse(string errorMessage)
         {
             return new ApiResponse<T>
