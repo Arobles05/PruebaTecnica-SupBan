@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Prueba.Tecnica.Web.Application.Interfaces;
+using Prueba.Tecnica.Web.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +9,23 @@ using System.Threading.Tasks;
 
 namespace Prueba.Tecnica.Web.Persistence.Implementatios
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         protected readonly IAppDbContext _context;
+        protected readonly IUserService _userService;
         protected readonly DbSet<T> _dbSet;
 
-        public GenericRepository(IAppDbContext context)
+        public GenericRepository(IAppDbContext context,IUserService userService)
         {
             _context = context;
+            _userService = userService;
             _dbSet = context.Set<T>();
         }
 
         public async Task AddAsync(T entity)
         {
+            entity.CreatedDate = DateTime.UtcNow;
+            entity.CreatedBy = _userService.GetCurrentUsername(); 
             await _dbSet.AddAsync(entity);
         }
 

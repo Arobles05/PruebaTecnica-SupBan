@@ -24,6 +24,7 @@ namespace Prueba.Tecnica.Web.Persistence
             services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>());
             services.AddScoped<IFileStorageService, FileStorageService>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }

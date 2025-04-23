@@ -75,3 +75,34 @@ POST: /api/auth/login
 },
 "errorMessage": null
 }
+```
+## Ejemplo del Request para subir archivos
+```curl
+
+curl -X 'POST' \
+  'https://localhost:7081/api/files/upload' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoicHJ1ZWJhIiwiZXhwIjoxNzQ1NDU1MDg1LCJpc3MiOiJwcnVlYmFUZWNuaWNhU0kqMDFAIyQlNTE1MTUxNTE0NFdXNSJ9.VclrPENP9bStWWZQAvzd2sF9UEdnLi3ET9kJkRfDaTc' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@5_Nuevos_Precios_Bajos_e_Informaciones_American_Christian_School.pdf;type=application/pdf'
+
+```
+## Respuesta del Servicio de forma sastifactoria
+
+```json
+{
+  "success": true,
+  "data": {
+    "fileId": "1b6b546b-540f-4cbb-a1a5-f639a2927066"
+  },
+  "errorMessage": null
+}
+```
+## Respuesta del Servicio con mensaje de validacion
+
+```json
+{
+  "File.ContentType": [
+    "Tipo de Archivo no soportado."
+  ]
+}
