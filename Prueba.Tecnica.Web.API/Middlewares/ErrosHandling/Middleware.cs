@@ -1,4 +1,5 @@
 ﻿using Prueba.Tecnica.Web.Application.ResponseModels;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Text.Json;
 
@@ -26,17 +27,29 @@ namespace Prueba.Tecnica.Web.API.Middlewares.ErrosHandling
             {
                 await _next(context);
             }
+            catch (BadHttpRequestException ex)
+            {
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                await HandleExceptionAsync(context, ex);
+
+            }
+            catch (ValidationException ex)
+            {
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                await HandleExceptionAsync(context, ex);
+
+            }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(context, ex);
+                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                  await HandleExceptionAsync(context, ex);
+
             }
         }
 
         private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
             var response = ApiResponse<object>.CreateErrorResponse("Internal Server Error");
             return context.Response.WriteAsync(JsonSerializer.Serialize(response));
         }
