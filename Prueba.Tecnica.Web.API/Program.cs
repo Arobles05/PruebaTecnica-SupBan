@@ -1,13 +1,42 @@
 using FluentValidation.AspNetCore;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.IdentityModel.Tokens;
 using Prueba.Tecnica.Web.API.Middlewares.Behaviors;
 using Prueba.Tecnica.Web.API.Middlewares.ErrosHandling;
 using Prueba.Tecnica.Web.Application;
 using Prueba.Tecnica.Web.Application.Validatos;
 using Prueba.Tecnica.Web.Persistence;
+using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+var key = builder.Configuration["Jwt:Key"]; 
+var issuer = builder.Configuration["Jwt:Issuer"];
+
+
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = issuer,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+    };
+});
 
 // Add services to the container.
 // Add services to the container.
@@ -41,6 +70,7 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

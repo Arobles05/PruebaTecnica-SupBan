@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Prueba.Tecnica.Web.Application.Feature.Files.Commands;
@@ -8,6 +9,7 @@ using Prueba.Tecnica.Web.Application.Validatos;
 
 namespace Prueba.Tecnica.Web.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/files")]
     public class FilesController : ControllerBase
