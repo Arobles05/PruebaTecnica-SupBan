@@ -8,6 +8,7 @@ using Prueba.Tecnica.Web.API.Middlewares.Behaviors;
 using Prueba.Tecnica.Web.Application.Feature.Files.Commands;
 using Prueba.Tecnica.Web.Application.Feature.Files.Queries;
 using Prueba.Tecnica.Web.Application.Validatos;
+using Prueba.Tecnica.Web.Application.ResponseModels;
 
 
 namespace Prueba.Tecnica.Web.API.Controllers
@@ -65,7 +66,13 @@ namespace Prueba.Tecnica.Web.API.Controllers
             }
 
             var fileId = await _mediator.Send(command);
-            return Ok(new { FileId = fileId });
+            if (fileId == Guid.Empty)
+            {
+                return BadRequest("Error al guardar el archivo.");
+            }
+            _logger.LogInformation($"Archivo guardado con exito: {fileId}");
+           
+            return Ok(ApiResponse<object>.CreateSuccessResponse(new { FileId = fileId }));
         }
 
         /// <summary>
