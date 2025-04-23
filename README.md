@@ -2,7 +2,7 @@
 # Proyecto Web API con .NET 8  
 
 Este proyecto es una Web API desarrollada utilizando el siguiente stack tecnológico y un conjunto de patrones y librerías para una arquitectura robusta y mantenible.  
-
+***
 ---  
 
 ## Tecnologías y Herramientas  
