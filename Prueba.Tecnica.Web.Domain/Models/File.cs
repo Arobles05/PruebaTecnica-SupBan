@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Prueba.Tecnica.Web.Domain.Models
 {
-    public class FileEntity
+    public class FileEntity: BaseEntity
     {
         public Guid Id { get; set; }
         public string FileName { get; set; } = null!;
